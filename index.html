@@ -1,0 +1,178 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css" />
+		<script src="equal.js"></script>
+		<script src="charsheet.js"></script>
+		<title>StarCraft RPG Character Sheet</title>
+	</head>
+	<body>
+		<div class="container">
+		<h1>StarCraft RPG Character Sheet</h1>
+
+		<section id="general">
+			<div class="group col col-4">
+				<h3>Character Name</h3>
+				<input type="text" class="save" id="name" />
+			</div>
+			<div class="group col col-1">
+				<h3>Level</h3>
+				<input type="text" class="save" id="level" />
+			</div>
+			<div class="group col col-2">
+				<h3>Origin/Race</h3>
+				<select class="save" id="origin">
+					<optgroup label="Terran">
+						<option value="core" data-race="t">Core Citizen</option>
+						<option value="umojan" data-race="t">Umojan Protectorate</option>
+						<option value="kelmorian" data-race="t">Kel-Morian Combine</option>
+						<option value="colonist" data-race="t">Fringe Colonist</option>
+						<option value="ued" data-race="t">UED Expedition</option>
+					</optgroup>
+				</select>
+			</div>
+			<div class="group col col-5">
+				<h3>Specializations/Classes</h3>
+				<select class="save" id="specialization">
+					<option value="academic" data-race="t">Academic</option>
+					<option value="brute" data-race="t">Brute</option>
+					<option value="demolitionist" data-race="t">Demolitionist</option>
+					<option value="guardian" data-race="t">Guardian</option>
+					<option value="infiltrator" data-race="t">Infiltrator</option>
+					<option value="leader" data-race="t">Leader</option>
+					<option value="medic" data-race="t">Medic</option>
+					<option value="personality" data-race="t">Personality</option>
+					<option value="pilot" data-race="t">Pilot</option>
+					<option value="skirmisher" data-race="t">Skirmisher</option>
+					<option value="sniper" data-race="t">Sniper</option>
+					<option value="soldier" data-race="t">Soldier</option>
+					<option value="survivalist" data-race="t">Survivalist</option>
+				</select>
+			</div>
+			<div class="clear"></div>
+		</section>
+
+		<section id="stats">
+			<div class="group col col-3">
+				<h3>Ability Scores</h3>
+				<ul>
+					<li>
+						<label>Strength</label>
+						<input class="save number" id="strength" type="number" />
+					</li>
+					<li>
+						<label>Instinct</label>
+						<input class="save number" id="instinct" type="number" />
+					</li>
+					<li>
+						<label>Agility</label>
+						<input class="save number" id="agility" type="number" />
+					</li>
+					<li>
+						<label>Intelligence</label>
+						<input class="save number" id="intelligence" type="number" />
+					</li>
+					<li>
+						<label>Willpower</label>
+						<input class="save number" id="willpower" type="number" />
+					</li>
+				</ul>
+			</div>
+			<div class="group col col-2">
+				<h3>Defenses</h3>
+				<ul>
+					<li>
+						<label>Defense</label>
+						<input class="number" id="defense" type="number" />
+					</li>
+					<li>
+						<label>Toughness</label>
+						<input class="number" id="toughness" type="number" />
+					</li>
+					<li>
+						<label>Resolve</label>
+						<input class="number" id="resolve" type="number" />
+					</li>
+					<li>
+						<label>Morale</label>
+						<input class="number" id="morale" type="number" />
+					</li>
+				</ul>
+			</div>
+			<div class="group col col-2">
+				<h3>Health</h3>
+				<ul>
+					<li>
+						<label>Hit Points</label>
+						<input class="number" id="hitpoints" type="number" />
+					</li>
+					<li>
+						<label>Damage Threshold</label>
+						<input class="number" id="dmgtresh" type="number" />
+					</li>
+					<li>
+						<label>Healing Threshold</label>
+						<input class="number" id="healtresh" type="number" />
+					</li>
+				</ul>
+			</div>
+			<div class="group col col-2">
+				<h3>Speeds</h3>
+				<ul>
+					<li>
+						<label>Move Speed</label>
+						<input class="number" id="movespeed" type="number" />
+					</li>
+					<li>
+						<label>Shift Speed</label>
+						<input class="number" id="shiftspeed" type="number" />
+					</li>
+					<li>
+						<label>Initiative</label>
+						<input class="number" id="initiative" type="number" />
+					</li>
+				</ul>
+			</div>
+			<div class="group col col-3">
+				<h3>Damage Resistances</h3>
+				<ul>
+					<li>
+						<label>Ballistic</label>
+						<input class="number" id="ballistic" type="number" />
+					</li>
+					<li>
+						<label>Melee</label>
+						<input class="number" id="melee" type="number" />
+					</li>
+					<li>
+						<label>Explosive</label>
+						<input class="number" id="explosive" type="number" />
+					</li>
+					<li>
+						<label>Energy</label>
+						<input class="number" id="energy" type="number" />
+					</li>
+					<li>
+						<label>Biological</label>
+						<input class="number" id="biological" type="number" />
+					</li>
+					<li>
+						<label>Psionic</label>
+						<input class="number" id="psionic" type="number" />
+					</li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</section>
+
+		<section id="attacks">
+
+			<div class="clear"></div>
+		</section>
+
+		<section id="skills">
+
+			<div class="clear"></div>
+		</section>
+		</div>
+	</body>
+</html>
