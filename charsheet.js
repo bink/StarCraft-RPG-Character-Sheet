@@ -121,6 +121,9 @@ function setupEvents()
 	{
 		inputs[i].addEventListener("change",validateAll);
 	}
+
+	document.getElementById("button_save").addEventListener("click",saveAll);
+	document.getElementById("button_load").addEventListener("click",loadAll);
 }
 
 
@@ -128,3 +131,35 @@ window.addEventListener("load",function() {
 	setupEvents();
 	validateAll();
 });
+
+/**
+ * Saving
+ */
+
+function getSaveJson()
+{
+	var fields = document.getElementsByClassName("save");
+	var saveData = {};
+	for(var i = 0; i < fields.length; i++)
+	{
+		saveData[fields[i].id] = fields[i].value;
+	}
+	return btoa(JSON.stringify(saveData));
+}
+
+function saveAll()
+{
+	alert("Your character:\n\n"+getSaveJson());
+}
+
+function loadAll()
+{
+	var code = prompt("Paste your character:\n\n");
+
+	var saveData = JSON.parse(atob(code));
+	for (var key in saveData)
+	{
+		document.getElementById(key).value = saveData[key];
+	}
+	validateAll();
+}
