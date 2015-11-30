@@ -88,14 +88,21 @@ input, select {
 	vertical-align: top;
 }
 
+.baseinput {
+	float: right;
+}
+.baseinput input {
+	float: left;
+}
+
 input.number {
 	max-width: 4em;
 }
 
-input.number.save {
-	max-width: 5em;
+input.calc {
+	margin-right: 2px;
+	color: green;
 }
-
 
 /**
  * Lists

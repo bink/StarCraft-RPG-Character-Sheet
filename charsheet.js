@@ -1,30 +1,52 @@
 var $ = function(sel)
 {
-	return document.querySelectorAll(sel);
+	var elements = document.querySelectorAll(sel);
+	if (elements.length == 1)
+	{
+		return elements[0];
+	}
+	else if (elements.length < 1)
+	{
+		return false;
+	}
+	else
+	{
+		return elements;
+	}
 }
 
-function getStatField(id)
+
+function setStatValue(id, val)
 {
-	return $("#"+id)[0];
+	$("#"+id).value = val;
 }
 
 function getStatValue(id)
 {
-	if (!getStatField(id)) return 0;
-	var val = $("#"+id)[0].value;
-	if (parseInt(val) == (typeof NaN))
+	var statField = $("#"+id);
+	var statBaseField = $("#"+id+"_base");
+
+	var val = 0;
+	var base = 0;
+
+	if (statBaseField)
 	{
-		return val;
+		base = parseInt(statBaseField.value);
 	}
-	else
+
+	if (statField)
 	{
-		return parseInt(val);
+		val = parseInt(statField.value);
 	}
+	if (!val) val = 0;
+	if (!base) base = 0;
+
+	return val + base;
 }
 
 function validateRaceAndSpecs()
 {
-	var raceSelect = getStatField("origin");
+	var raceSelect = $("#origin");
 	var race = raceSelect.options[raceSelect.selectedIndex].getAttribute("data-race");
 	/**
 	 * Deactivate unavailable specializations
@@ -45,27 +67,51 @@ function validateRaceAndSpecs()
 
 function calculateHealth()
 {
-	//var hitpointField = $;
-	//var currentHitpointField = $("#currenthitpoints")[0];
-	var strength = getStatValue("strength");
+	var strength = getStatValue("ability_strength");
 	var level = getStatValue("level");
 
-	var hp = 40 + 3.0 * strength + (level - 1) * strength;
-	getStatField("hitpoints").value = hp;
+	var hp = 40 + (3.0 * strength) + (level - 1) * strength;
+	setStatValue("health_hitpoints",hp);
 
 	//healing threshold
 	var ht = Math.floor(0.5 * strength) + 5;
-	getStatField("healingthreshold").value = ht;
+	setStatValue("health_healingthreshold",ht);
 
 	//damage threshold
-	var dt = strength + 12;
-	getStatField("damagethreshold").value = dt;
+	var dt = strength + 12; //TODO add correct calculation
+	setStatValue("health_damagethreshold",dt);
+}
+
+function calculateDefense()
+{
+	var def = 8 + getStatValue("prowess_defensive") + getStatValue("ability_agility") + 0; // +0 for medium sized characters
+	setStatValue("defense_defense",def);
+
+	var tou = 8 + getStatValue("prowess_defensive") + getStatValue("ability_strength") + 0;
+	setStatValue("defense_toughness",tou);
+
+	var res = 8 + getStatValue("prowess_mental") + getStatValue("ability_willpower"); // Talents missing
+	setStatValue("defense_resolve",res);
+}
+
+function calculateMovement()
+{
+	var mov = 4 + Math.floor(0.5 * getStatValue("ability_agility"));
+	setStatValue("movement_movespeed",mov);
+
+	var shi = 1 + Math.floor(0.2 * getStatValue("ability_agility"));
+	setStatValue("movement_shiftspeed",shi);
+
+	var ini = getStatValue("ability_instinct");
+	setStatValue("movement_initiative",ini);
 }
 
 function validateAll()
 {
 	validateRaceAndSpecs();
 	calculateHealth();
+	calculateDefense();
+	calculateMovement();
 }
 
 function setupEvents()
@@ -80,4 +126,5 @@ function setupEvents()
 
 window.addEventListener("load",function() {
 	setupEvents();
+	validateAll();
 });

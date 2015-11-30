@@ -16,7 +16,7 @@
 			</div>
 			<div class="group col col-1">
 				<h3>Level</h3>
-				<input type="number" class="save" id="level" />
+				<input type="number" class="save" id="level" value="1" />
 			</div>
 			<div class="group col col-2">
 				<h3>Origin/Race</h3>
@@ -57,23 +57,38 @@
 				<ul>
 					<li>
 						<label>Strength</label>
-						<input class="save number" id="strength" type="number" />
+						<div class="baseinput">
+							<input class="calc number" id="ability_strength_base" type="text" value="2" readonly />
+							<input class="save number" id="ability_strength" type="number" value="0" />
+						</div>
 					</li>
 					<li>
 						<label>Instinct</label>
-						<input class="save number" id="instinct" type="number" />
+						<div class="baseinput">
+							<input class="calc number" id="ability_instinct_base" type="text" value="2" readonly />
+							<input class="save number" id="ability_instinct" type="number" value="0" />
+						</div>
 					</li>
 					<li>
 						<label>Agility</label>
-						<input class="save number" id="agility" type="number" />
+						<div class="baseinput">
+							<input class="calc number" id="ability_agility_base" type="text" value="2" readonly />
+							<input class="save number" id="ability_agility" type="number" value="0" />
+						</div>
 					</li>
 					<li>
 						<label>Intelligence</label>
-						<input class="save number" id="intelligence" type="number" />
+						<div class="baseinput">
+							<input class="calc number" id="ability_intelligence_base" type="text" value="2" readonly />
+							<input class="save number" id="ability_intelligence" type="number" value="0" />
+						</div>
 					</li>
 					<li>
 						<label>Willpower</label>
-						<input class="save number" id="willpower" type="number" />
+						<div class="baseinput">
+							<input class="calc number" id="ability_willpower_base" type="text" value="2" readonly />
+							<input class="save number" id="ability_willpower" type="number" value="0" />
+						</div>
 					</li>
 				</ul>
 			</div>
@@ -82,19 +97,19 @@
 				<ul>
 					<li>
 						<label>Defense</label>
-						<input class="number" id="defense" type="number" />
+						<input class="number" id="defense_defense" type="number" readonly />
 					</li>
 					<li>
 						<label>Toughness</label>
-						<input class="number" id="toughness" type="number" />
+						<input class="number" id="defense_toughness" type="number" readonly />
 					</li>
 					<li>
 						<label>Resolve</label>
-						<input class="number" id="resolve" type="number" />
+						<input class="number" id="defense_resolve" type="number" readonly />
 					</li>
 					<li>
 						<label>Morale</label>
-						<input class="number" id="morale" type="number" />
+						<input class="save number" id="defense_morale" type="number" value="0" />
 					</li>
 				</ul>
 			</div>
@@ -103,16 +118,15 @@
 				<ul>
 					<li>
 						<label>Hit Points</label>
-						<input class="number" id="hitpoints" type="number" />
-						<input class="save" id="currenthitpoints" type="hidden" />
+						<input class="number" id="health_hitpoints" type="number" readonly />
 					</li>
 					<li>
 						<label>Damage Threshold</label>
-						<input class="number" id="damagethreshold" type="number" />
+						<input class="number" id="health_damagethreshold" type="number" readonly />
 					</li>
 					<li>
 						<label>Healing Threshold</label>
-						<input class="number" id="healingthreshold" type="number" />
+						<input class="number" id="health_healingthreshold" type="number" readonly />
 					</li>
 				</ul>
 			</div>
@@ -121,15 +135,15 @@
 				<ul>
 					<li>
 						<label>Move Speed</label>
-						<input class="number" id="movespeed" type="number" />
+						<input class="number" id="movement_movespeed" type="number" readonly />
 					</li>
 					<li>
 						<label>Shift Speed</label>
-						<input class="number" id="shiftspeed" type="number" />
+						<input class="number" id="movement_shiftspeed" type="number" readonly />
 					</li>
 					<li>
 						<label>Initiative</label>
-						<input class="number" id="initiative" type="number" />
+						<input class="number" id="movement_initiative" type="number" readonly />
 					</li>
 				</ul>
 			</div>
@@ -138,27 +152,27 @@
 				<ul>
 					<li>
 						<label>Ballistic</label>
-						<input class="number" id="ballistic" type="number" />
+						<input class="save number" id="ballistic" type="number" value="0" />
 					</li>
 					<li>
 						<label>Melee</label>
-						<input class="number" id="melee" type="number" />
+						<input class="save number" id="melee" type="number" value="0" />
 					</li>
 					<li>
 						<label>Explosive</label>
-						<input class="number" id="explosive" type="number" />
+						<input class="save number" id="explosive" type="number" value="0" />
 					</li>
 					<li>
 						<label>Energy</label>
-						<input class="number" id="energy" type="number" />
+						<input class="save number" id="energy" type="number" value="0" />
 					</li>
 					<li>
 						<label>Biological</label>
-						<input class="number" id="biological" type="number" />
+						<input class="save number" id="biological" type="number" value="0" />
 					</li>
 					<li>
 						<label>Psionic</label>
-						<input class="number" id="psionic" type="number" />
+						<input class="save number" id="psionic" type="number" value="0" />
 					</li>
 				</ul>
 			</div>
