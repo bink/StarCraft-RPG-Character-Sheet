@@ -3,6 +3,7 @@
 		<link rel="stylesheet" href="src/css/style.css" />
 		<script src="src/js/equal.js"></script>
 		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="src/js/tables.js"></script>
 		<script src="src/js/charsheet.js"></script>
 		<title>StarCraft RPG Character Sheet</title>
 	</head>
@@ -22,34 +23,19 @@
 				<h3>Level</h3>
 				<input type="number" class="save" id="level" value="1" />
 			</div>
-			<div class="group col col-2">
+			<div class="group col col-4">
 				<h3>Origin/Race</h3>
 				<select class="save" id="origin">
-					<optgroup label="Terran">
-						<option value="core" data-race="t">Core Citizen</option>
-						<option value="umojan" data-race="t">Umojan Protectorate</option>
-						<option value="kelmorian" data-race="t">Kel-Morian Combine</option>
-						<option value="colonist" data-race="t">Fringe Colonist</option>
-						<option value="ued" data-race="t">UED Expedition</option>
-					</optgroup>
+					
+				</select>
+				<select class="save" id="origin_ability_bonus">
+
 				</select>
 			</div>
-			<div class="group col col-5">
+			<div class="group col col-3">
 				<h3>Specializations/Classes</h3>
 				<select class="save" id="specialization">
-					<option value="academic" data-race="t">Academic</option>
-					<option value="brute" data-race="t">Brute</option>
-					<option value="demolitionist" data-race="t">Demolitionist</option>
-					<option value="guardian" data-race="t">Guardian</option>
-					<option value="infiltrator" data-race="t">Infiltrator</option>
-					<option value="leader" data-race="t">Leader</option>
-					<option value="medic" data-race="t">Medic</option>
-					<option value="personality" data-race="t">Personality</option>
-					<option value="pilot" data-race="t">Pilot</option>
-					<option value="skirmisher" data-race="t">Skirmisher</option>
-					<option value="sniper" data-race="t">Sniper</option>
-					<option value="soldier" data-race="t">Soldier</option>
-					<option value="survivalist" data-race="t">Survivalist</option>
+
 				</select>
 			</div>
 			<div class="clear"></div>
@@ -62,35 +48,35 @@
 					<li>
 						<label>Strength</label>
 						<div class="baseinput">
-							<input class="save number" id="ability_strength_base" type="text" value="2" />
+							<input class="number" id="ability_strength_base" type="text" value="2" readonly />
 							<input class="save number" id="ability_strength" type="number" value="0" />
 						</div>
 					</li>
 					<li>
 						<label>Instinct</label>
 						<div class="baseinput">
-							<input class="save number" id="ability_instinct_base" type="text" value="2" />
+							<input class="number" id="ability_instinct_base" type="text" value="2" readonly />
 							<input class="save number" id="ability_instinct" type="number" value="0" />
 						</div>
 					</li>
 					<li>
 						<label>Agility</label>
 						<div class="baseinput">
-							<input class="save number" id="ability_agility_base" type="text" value="2" />
+							<input class="number" id="ability_agility_base" type="text" value="2" readonly />
 							<input class="save number" id="ability_agility" type="number" value="0" />
 						</div>
 					</li>
 					<li>
 						<label>Intelligence</label>
 						<div class="baseinput">
-							<input class="save number" id="ability_intelligence_base" type="text" value="2" />
+							<input class="number" id="ability_intelligence_base" type="text" value="2" readonly />
 							<input class="save number" id="ability_intelligence" type="number" value="0" />
 						</div>
 					</li>
 					<li>
 						<label>Willpower</label>
 						<div class="baseinput">
-							<input class="save number" id="ability_willpower_base" type="text" value="2" />
+							<input class="number" id="ability_willpower_base" type="text" value="2" readonly />
 							<input class="save number" id="ability_willpower" type="number" value="0" />
 						</div>
 					</li>
