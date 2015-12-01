@@ -45,7 +45,10 @@ function validateRaceAndSpecs()
 	 */
 	var specs = $("#specialization > option").removeAttr("disabled");
 	specs.not("[data-race="+race+"]").attr("disabled","");
-	
+
+	/**
+	 * Validate ability bonus
+	 */	
 	var origin = $("#origin").val();
 
 	$("#origin_ability_bonus option").remove();
@@ -82,7 +85,7 @@ function calculateBaseStats()
 			bonuses[desc] = bonus[desc];
 		}
 	}
-	
+
 	for (var stat in bonuses)
 	{
 		console.log("Setting ability "+stat+" to "+bonuses[stat]);
@@ -136,7 +139,7 @@ function calculateMovement()
 function calculateAll()
 {
 	console.groupCollapsed("Validation");
-	
+
 	calculateBaseStats();
 	calculateHealth();
 	calculateDefense();
@@ -150,7 +153,7 @@ function setupData()
 	for(var rkey in DATA_races)
 	{
 		var raceGroup = $("<optgroup>").attr("label",DATA_races[rkey]);
-		
+
 		for(var okey in DATA_origins)
 		{
 			if (DATA_origins[okey].race != rkey) continue;
@@ -160,12 +163,19 @@ function setupData()
 
 		raceGroup.appendTo($("#origin"));
 	}
+
+	for (var skey in DATA_specializations)
+	{
+		var specOpt = $("<option>").attr("value",skey).html(DATA_specializations[skey].name);
+		specOpt.attr("data-race",DATA_specializations[skey].race);
+		specOpt.appendTo($("#specialization")); 
+	}
 }
 
 function setupEvents()
 {
 	$("input,select").on("change",calculateAll);
-	
+
 	$("#origin, #specialization").on("change",validateRaceAndSpecs);
 
 	$("#button_save").on("click",saveAll);
@@ -174,11 +184,11 @@ function setupEvents()
 
 
 $(window).on("load",function() {
-	setupData();
-	setupEvents();
-	validateRaceAndSpecs();
-	calculateAll();
-});
+		setupData();
+		setupEvents();
+		validateRaceAndSpecs();
+		calculateAll();
+		});
 
 /**
  * Saving
