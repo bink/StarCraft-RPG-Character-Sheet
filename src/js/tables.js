@@ -1,0 +1,154 @@
+/**
+ * A list of data tables that all data is taken from to avoid cluttering the HTML
+ */
+var DATA_races = {
+    "t":"Terran",
+    "z":"Zerg",
+    "p":"Protoss"
+}
+
+var DATA_origins = {
+    "core":{
+        "name":"Core Citizen",
+        "race":"t",
+        "point_cost":9,
+        "ability_bonuses":[{"intelligence":1,"agility":1,"willpower":1},{"instinct":1}],
+        "prowess_bonuses":{"melee":1,"pistol":1,"land":1,"mental":1},
+        "adventuring_bonuses":{"lore":1,"influence":1},
+        "other_bonuses":{"credits":250}
+    },
+    "umojan":{
+        "name":"Umojan Protectorate",
+        "race":"t",
+        "point_cost":9,
+        "ability_bonuses":[{"willpower":1,"intelligence":2},{"intelligence":1,"instinct":1}],
+        "prowess_bonuses":{"pistol":1,"land":1,"mental":2},
+        "adventuring_bonuses":{"lore":1,"science":1},
+        "other_bonuses":{}
+    },
+    "kelmorian":{
+        "name":"Kel-Morian Combine",
+        "race":"t",
+        "point_cost":8,
+        "ability_bonuses":[{"strength":2,"agility":1},{"intelligence":1}],
+        "prowess_bonuses":{"melee":1,"durability":1,"land":1},
+        "adventuring_bonuses":{"athletics":1,"endurance":1},
+        "other_bonuses":{}
+    },
+    "colonist":{
+        "name":"Fringe Colonist",
+        "race":"t",
+        "point_cost":12,
+        "ability_bonuses":[{"willpower":1},{"intelligence":1}],
+        "prowess_bonuses":{"melee":1,"pistol":1,"rifle":1,"explosives":1,"durability":1},
+        "adventuring_bonuses":{"acrobatics":1,"endurance":1,"sneak":1},
+        "other_bonuses":{"credits":-250}
+    },
+    "ued":{
+        "name":"United Earth Directorate Expedition",
+        "race":"t",
+        "point_cost":12,
+        "ability_bonuses":[{"instinct":2,"strength":2},{"intelligence":2}],
+        "prowess_bonuses":{"pistol":1,"rifle":1,"land":1,"aerial":1,"defense":1,"mental":1},
+        "adventuring_bonuses":{"tactics":2},
+        "other_bonuses":{}
+    }
+};
+
+var DATA_specializations = {
+    "academic":{
+        "name":"Academic",
+        "race":"t",
+        "point_cost":7,
+        "ability_bonuses":{"intelligence":1},
+        "adventuring_bonuses":{"science":1,"lore":1}
+    },
+    "brute":{
+        "name":"Brute",
+        "race":"t",
+        "point_cost":9,
+        "ability_bonuses":{"strength":1},
+        "prowess_bonuses":{"durability":1,"melee":1}
+    },
+    "demolitionist":{
+        "name":"Demolitionist",
+        "race":"t",
+        "point_cost":8,
+        "ability_bonuses":{"instinct":1},
+        "prowess_bonuses":{"explosives":2}
+    },
+    "guardian":{
+        "name":"Guardian",
+        "race":"t",
+        "point_cost":7,
+        "ability_bonuses":{"strength":1},
+        "prowess_bonuses":{"durability":1,"defense":1}
+    },
+    "infiltrator":{
+        "name":"Infiltrator",
+        "race":"t",
+        "point_cost":7,
+        "ability_bonuses":{"agility":1},
+        "adventuring_bonuses":{"sneak":2}
+    },
+    "leader":{
+        "name":"Leader",
+        "race":"t",
+        "point_cost":7,
+        "ability_bonuses":{"willpower":1},
+        "prowess_bonuses":{"mental":1},
+        "adventuring_bonuses":{"leadership":1}
+    },
+    "medic":{
+        "name":"Medic",
+        "race":"t",
+        "point_cost":8,
+        "ability_bonuses":{"intelligence":1},
+        "adventuring_bonuses":{"medicine":2}
+    },
+    "personality":{
+        "name":"Personality",
+        "race":"t",
+        "point_cost":7,
+        "ability_bonuses":{"willpower":1},
+        "adventuring_bonuses":{"influence":2}
+    },
+    "pilot":{
+        "name":"Pilot",
+        "race":"t",
+        "point_cost":6,
+        "ability_bonuses":{"instinct":1},
+        "adventuring_bonuses":{"pilot":2}
+    },
+    "skirmisher":{
+        "name":"Skirmisher",
+        "race":"t",
+        "point_cost":7,
+        "ability_bonuses":{"agility":1},
+        "adventuring_bonuses":{"athletics":1,"acrobatics":1}
+    },
+    "sniper":{
+        "name":"Sniper",
+        "race":"t",
+        "point_cost":6,
+        "ability_bonuses":{"instinct":1},
+        "prowess_bonuses":{"rifle":2},
+    },
+    "soldier":{
+        "name":"Soldier",
+        "race":"t",
+        "point_cost":8,
+        "ability_bonuses":{"instinct":1},
+        "prowess_bonuses":{"pistol":1,"rifle":1},
+        "adventuring_bonuses":{"tactics":2}
+    },
+    "survivalist":{
+        "name":"Survivalist",
+        "race":"t",
+        "point_cost":9,
+        "ability_bonuses":{"strength":1},
+        "prowess_bonuses":{"defense":1,"mental":1},
+        "adventuring_bonuses":{}
+    }
+}
+

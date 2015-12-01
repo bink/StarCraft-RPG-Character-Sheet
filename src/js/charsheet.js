@@ -38,15 +38,62 @@ function getStat(id)
 
 function validateRaceAndSpecs()
 {
-	var race = $("#origin option:selected").attr("data-race");
+	var race = DATA_origins[$("#origin").val()].race;
 
 	/**
 	 * Deactivate unavailable specializations
 	 */
 	var specs = $("#specialization > option").removeAttr("disabled");
 	specs.not("[data-race="+race+"]").attr("disabled","");
-	
+
+	/**
+	 * Validate ability bonus
+	 */	
+	var origin = $("#origin").val();
+
+	$("#origin_ability_bonus option").remove();
+	var bonuses = DATA_origins[origin].ability_bonuses;
+	for(var id in bonuses)
+	{
+		var text = "";
+		for(var desc in bonuses[id])
+		{
+			var sign = (bonuses[id][desc] >= 0) ? "+" : "";
+			text += sign+bonuses[id][desc]+" "+desc.substring(0,1).toUpperCase() + desc.substring(1) + ", ";
+		}
+		text = text.substring(0,text.length - 2);
+		var opt = $("<option>").attr("value",id).html(text);
+		opt.appendTo($("#origin_ability_bonus"));
+	}
+
 }
+
+function calculateBaseStats()
+{
+	var bonuses = {"strength":2,"instinct":2,"agility":2,"intelligence":2,"willpower":2}; //Default values for Terran
+
+	var origin = $("#origin").val();
+	var bonus = DATA_origins[origin].ability_bonuses[$("#origin_ability_bonus").val()];
+	for (var desc in bonus)
+	{
+		bonuses[desc] += bonus[desc];
+	}
+
+	var spec = $("#specialization").val();
+	var spec_ability_bonus = DATA_specializations[spec].ability_bonuses;
+	for (var desc in spec_ability_bonus)
+	{
+		bonuses[desc] += spec_ability_bonus[desc];
+	}
+
+	for (var stat in bonuses)
+	{
+		console.log("Setting ability "+stat+" to "+bonuses[stat]);
+		$("#ability_"+stat+"_base").val(bonuses[stat]);
+	}
+
+}
+
 
 function calculateHealth()
 {
@@ -89,26 +136,58 @@ function calculateMovement()
 	setStat("movement_initiative",ini);
 }
 
-function validateAll()
+function calculateAll()
 {
-	validateRaceAndSpecs();
+	console.groupCollapsed("Validation");
+
+	calculateBaseStats();
 	calculateHealth();
 	calculateDefense();
 	calculateMovement();
+
+	console.groupEnd();
+}
+
+function setupData()
+{
+	for(var rkey in DATA_races)
+	{
+		var raceGroup = $("<optgroup>").attr("label",DATA_races[rkey]);
+
+		for(var okey in DATA_origins)
+		{
+			if (DATA_origins[okey].race != rkey) continue;
+			var opt = $("<option>").attr("value",okey).html(DATA_origins[okey].name);
+			opt.appendTo(raceGroup);
+		}
+
+		raceGroup.appendTo($("#origin"));
+	}
+
+	for (var skey in DATA_specializations)
+	{
+		var specOpt = $("<option>").attr("value",skey).html(DATA_specializations[skey].name);
+		specOpt.attr("data-race",DATA_specializations[skey].race);
+		specOpt.appendTo($("#specialization")); 
+	}
 }
 
 function setupEvents()
 {
-	$("input,select").on("change",validateAll);
-	
+	$("input,select").on("change",calculateAll);
+
+	$("#origin").on("change",validateRaceAndSpecs);
+
 	$("#button_save").on("click",saveAll);
 	$("#button_load").on("click",loadAll);
 }
 
 
 $(window).on("load",function() {
-	setupEvents();
-	validateAll();
+		setupData();
+		setupEvents();
+		validateRaceAndSpecs();
+		calculateAll();
 });
 
 /**
@@ -128,7 +207,7 @@ function getSaveJson()
 
 function saveAll()
 {
-	alert("Your character:\n\n"+getSaveJson());
+	prompt("Your character: (copy to save)",getSaveJson());
 }
 
 function loadAll()
@@ -140,5 +219,5 @@ function loadAll()
 	{
 		document.getElementById(key).value = saveData[key];
 	}
-	validateAll();
+	calculateAll();
 }
