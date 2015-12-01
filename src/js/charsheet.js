@@ -38,7 +38,7 @@ function getStat(id)
 
 function validateRaceAndSpecs()
 {
-	var race = $("#origin option:selected").attr("data-race");
+	var race = DATA_origins[$("#origin").val()].race;
 
 	/**
 	 * Deactivate unavailable specializations
@@ -67,8 +67,30 @@ function validateRaceAndSpecs()
 
 function calculateBaseStats()
 {
+	var bonuses = {"strength":2,"instinct":2,"agility":2,"intelligence":2,"willpower":2}; //Default values for Terran
+
+	var origin = $("#origin").val();
+	var bonus = DATA_origins[origin].ability_bonuses[$("#origin_ability_bonus").val()];
+	for (var desc in bonus)
+	{
+		if (bonuses.hasOwnProperty(desc))
+		{
+			bonuses[desc] += bonus[desc];
+		}
+		else
+		{
+			bonuses[desc] = bonus[desc];
+		}
+	}
 	
+	for (var stat in bonuses)
+	{
+		console.log("Setting ability "+stat+" to "+bonuses[stat]);
+		$("#ability_"+stat+"_base").val(bonuses[stat]);
+	}
+
 }
+
 
 function calculateHealth()
 {
