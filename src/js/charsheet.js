@@ -61,7 +61,7 @@ function calculateHealth()
 	setStat("health_healingthreshold",ht);
 
 	//damage threshold
-	var dt = strength + 12; //TODO add correct calculation
+	var dt = strength + getStat("prowess_durability") + 12; 
 	setStat("health_damagethreshold",dt);
 }
 
