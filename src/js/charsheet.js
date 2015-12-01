@@ -76,14 +76,14 @@ function calculateBaseStats()
 	var bonus = DATA_origins[origin].ability_bonuses[$("#origin_ability_bonus").val()];
 	for (var desc in bonus)
 	{
-		if (bonuses.hasOwnProperty(desc))
-		{
-			bonuses[desc] += bonus[desc];
-		}
-		else
-		{
-			bonuses[desc] = bonus[desc];
-		}
+		bonuses[desc] += bonus[desc];
+	}
+
+	var spec = $("#specialization").val();
+	var spec_ability_bonus = DATA_specializations[spec].ability_bonuses;
+	for (var desc in spec_ability_bonus)
+	{
+		bonuses[desc] += spec_ability_bonus[desc];
 	}
 
 	for (var stat in bonuses)
@@ -176,7 +176,7 @@ function setupEvents()
 {
 	$("input,select").on("change",calculateAll);
 
-	$("#origin, #specialization").on("change",validateRaceAndSpecs);
+	$("#origin").on("change",validateRaceAndSpecs);
 
 	$("#button_save").on("click",saveAll);
 	$("#button_load").on("click",loadAll);
@@ -188,7 +188,7 @@ $(window).on("load",function() {
 		setupEvents();
 		validateRaceAndSpecs();
 		calculateAll();
-		});
+});
 
 /**
  * Saving
