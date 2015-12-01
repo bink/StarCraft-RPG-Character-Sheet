@@ -1,109 +1,92 @@
-var $ = function(sel)
+/**
+ * Sets the value of stat field.
+ * Basically just an alias for setting the field value,
+ * perhaps more functionality will be added later.
+ * This should only be used for numerical fields.
+ *
+ * @param {string} id - The id of the stat.
+ * @param {number} val - The new value for the stat.
+ */
+function setStat(id, val)
 {
-	var elements = document.querySelectorAll(sel);
-	if (elements.length == 1)
-	{
-		return elements[0];
-	}
-	else if (elements.length < 1)
-	{
-		return false;
-	}
-	else
-	{
-		return elements;
-	}
+	$("#"+id).val(val);
 }
 
-
-function setStatValue(id, val)
-{
-	$("#"+id).value = val;
-}
-
-function getStatValue(id)
+/**
+ * Returns the current value of a stat field.
+ * Includes base stats if they exist.
+ * This should only be used for numerical fields.
+ *
+ * @param {string} id - The id of the stat.
+ * @returns {number} - The value of the stat. Possibly 0 if not found. 
+ */
+function getStat(id)
 {
 	var statField = $("#"+id);
 	var statBaseField = $("#"+id+"_base");
 
-	var val = 0;
-	var base = 0;
+	var val = +(statField.val());
+	var base = +(statBaseField.val());
 
-	if (statBaseField)
-	{
-		base = parseInt(statBaseField.value);
-	}
+	var result = val;
+	if (!isNaN(base)) result += base;
 
-	if (statField)
-	{
-		val = parseInt(statField.value);
-	}
-	if (!val) val = 0;
-	if (!base) base = 0;
+	if (isNaN(result)) result = 0;
 
-	return val + base;
+	return result;
 }
 
 function validateRaceAndSpecs()
 {
-	var raceSelect = $("#origin");
-	var race = raceSelect.options[raceSelect.selectedIndex].getAttribute("data-race");
+	var race = $("#origin option:selected").attr("data-race");
+
 	/**
 	 * Deactivate unavailable specializations
 	 */
-	var specs = $("#specialization > option");
-	for(var i = 0; i < specs.length; i++)
-	{
-		if (specs[i].getAttribute("data-race") != race)
-		{
-			specs[i].setAttribute("disabled","");
-		}
-		else
-		{
-			specs[i].removeAttribute("disabled");
-		}
-	}
+	var specs = $("#specialization > option").removeAttr("disabled");
+	specs.not("[data-race="+race+"]").attr("disabled","");
+	
 }
 
 function calculateHealth()
 {
-	var strength = getStatValue("ability_strength");
-	var level = getStatValue("level");
+	var strength = getStat("ability_strength");
+	var level = getStat("level");
 
 	var hp = 40 + (3.0 * strength) + (level - 1) * strength;
-	setStatValue("health_hitpoints",hp);
+	setStat("health_hitpoints",hp);
 
 	//healing threshold
 	var ht = Math.floor(0.5 * strength) + 5;
-	setStatValue("health_healingthreshold",ht);
+	setStat("health_healingthreshold",ht);
 
 	//damage threshold
 	var dt = strength + 12; //TODO add correct calculation
-	setStatValue("health_damagethreshold",dt);
+	setStat("health_damagethreshold",dt);
 }
 
 function calculateDefense()
 {
-	var def = 8 + getStatValue("prowess_defensive") + getStatValue("ability_agility") + 0; // +0 for medium sized characters
-	setStatValue("defense_defense",def);
+	var def = 8 + getStat("prowess_defensive") + getStat("ability_agility") + 0; // +0 for medium sized characters
+	setStat("defense_defense",def);
 
-	var tou = 8 + getStatValue("prowess_defensive") + getStatValue("ability_strength") + 0;
-	setStatValue("defense_toughness",tou);
+	var tou = 8 + getStat("prowess_defensive") + getStat("ability_strength") + 0;
+	setStat("defense_toughness",tou);
 
-	var res = 8 + getStatValue("prowess_mental") + getStatValue("ability_willpower"); // Talents missing
-	setStatValue("defense_resolve",res);
+	var res = 8 + getStat("prowess_mental") + getStat("ability_willpower"); // Talents missing
+	setStat("defense_resolve",res);
 }
 
 function calculateMovement()
 {
-	var mov = 4 + Math.floor(0.5 * getStatValue("ability_agility"));
-	setStatValue("movement_movespeed",mov);
+	var mov = 4 + Math.floor(0.5 * getStat("ability_agility"));
+	setStat("movement_movespeed",mov);
 
-	var shi = 1 + Math.floor(0.2 * getStatValue("ability_agility"));
-	setStatValue("movement_shiftspeed",shi);
+	var shi = 1 + Math.floor(0.2 * getStat("ability_agility"));
+	setStat("movement_shiftspeed",shi);
 
-	var ini = getStatValue("ability_instinct");
-	setStatValue("movement_initiative",ini);
+	var ini = getStat("ability_instinct");
+	setStat("movement_initiative",ini);
 }
 
 function validateAll()
@@ -116,18 +99,14 @@ function validateAll()
 
 function setupEvents()
 {
-	var inputs = $("input,select");
-	for(var i = 0; i < inputs.length; i++)
-	{
-		inputs[i].addEventListener("change",validateAll);
-	}
-
-	document.getElementById("button_save").addEventListener("click",saveAll);
-	document.getElementById("button_load").addEventListener("click",loadAll);
+	$("input,select").on("change",validateAll);
+	
+	$("#button_save").on("click",saveAll);
+	$("#button_load").on("click",loadAll);
 }
 
 
-window.addEventListener("load",function() {
+$(window).on("load",function() {
 	setupEvents();
 	validateAll();
 });
