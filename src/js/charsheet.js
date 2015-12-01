@@ -97,6 +97,23 @@ function validateAll()
 	calculateMovement();
 }
 
+function setupData()
+{
+	for(var rkey in DATA_races)
+	{
+		var raceGroup = $("<optgroup>").attr("label",DATA_races[rkey]);
+		
+		for(var okey in DATA_origins)
+		{
+			if (DATA_origins[okey].race != rkey) continue;
+			var opt = $("<option>").attr("value",okey).html(DATA_origins[okey].name);
+			opt.appendTo(raceGroup);
+		}
+
+		raceGroup.appendTo($("#origin"));
+	}
+}
+
 function setupEvents()
 {
 	$("input,select").on("change",validateAll);
@@ -107,6 +124,7 @@ function setupEvents()
 
 
 $(window).on("load",function() {
+	setupData();
 	setupEvents();
 	validateAll();
 });
