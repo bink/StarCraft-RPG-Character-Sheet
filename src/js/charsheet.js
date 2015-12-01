@@ -46,6 +46,28 @@ function validateRaceAndSpecs()
 	var specs = $("#specialization > option").removeAttr("disabled");
 	specs.not("[data-race="+race+"]").attr("disabled","");
 	
+	var origin = $("#origin").val();
+
+	$("#origin_ability_bonus option").remove();
+	var bonuses = DATA_origins[origin].ability_bonuses;
+	for(var id in bonuses)
+	{
+		var text = "";
+		for(var desc in bonuses[id])
+		{
+			var sign = (bonuses[id][desc] >= 0) ? "+" : "";
+			text += sign+bonuses[id][desc]+" "+desc.substring(0,1).toUpperCase() + desc.substring(1) + ", ";
+		}
+		text = text.substring(0,text.length - 2);
+		var opt = $("<option>").attr("value",id).html(text);
+		opt.appendTo($("#origin_ability_bonus"));
+	}
+
+}
+
+function calculateBaseStats()
+{
+	
 }
 
 function calculateHealth()
@@ -89,12 +111,16 @@ function calculateMovement()
 	setStat("movement_initiative",ini);
 }
 
-function validateAll()
+function calculateAll()
 {
-	validateRaceAndSpecs();
+	console.groupCollapsed("Validation");
+	
+	calculateBaseStats();
 	calculateHealth();
 	calculateDefense();
 	calculateMovement();
+
+	console.groupEnd();
 }
 
 function setupData()
@@ -116,8 +142,10 @@ function setupData()
 
 function setupEvents()
 {
-	$("input,select").on("change",validateAll);
+	$("input,select").on("change",calculateAll);
 	
+	$("#origin, #specialization").on("change",validateRaceAndSpecs);
+
 	$("#button_save").on("click",saveAll);
 	$("#button_load").on("click",loadAll);
 }
@@ -126,7 +154,8 @@ function setupEvents()
 $(window).on("load",function() {
 	setupData();
 	setupEvents();
-	validateAll();
+	validateRaceAndSpecs();
+	calculateAll();
 });
 
 /**
@@ -146,7 +175,7 @@ function getSaveJson()
 
 function saveAll()
 {
-	alert("Your character:\n\n"+getSaveJson());
+	prompt("Your character: (copy to save)",getSaveJson());
 }
 
 function loadAll()
@@ -158,5 +187,5 @@ function loadAll()
 	{
 		document.getElementById(key).value = saveData[key];
 	}
-	validateAll();
+	calculateAll();
 }
