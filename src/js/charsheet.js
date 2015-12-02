@@ -70,28 +70,30 @@ function validateRaceAndSpecs()
 
 function calculateBaseStats()
 {
-	var bonuses = {"strength":2,"instinct":2,"agility":2,"intelligence":2,"willpower":2}; //Default values for Terran
+	var ability_bonuses = {"strength":2,"instinct":2,"agility":2,"intelligence":2,"willpower":2}; //Default values for Terran
+	var adventuring_bonuses = {}
 
-	var origin = $("#origin").val();
-	var bonus = DATA_origins[origin].ability_bonuses[$("#origin_ability_bonus").val()];
-	for (var desc in bonus)
+	var origin = DATA_origins[$("#origin").val()];
+	var chosen_ability_bonus = origin.ability_bonuses[$("#origin_ability_bonus").val()];
+	var spec = DATA_specializations[$("#specialization").val()];
+
+	// Abilities
+	ability_bonuses = merge_stats(ability_bonuses,chosen_ability_bonus,spec.ability_bonuses);
+
+	// Adventuring Skills
+	adventuring_bonuses = merge_stats(adventuring_bonuses,origin.adventuring_bonuses,spec.adventuring_bonuses);
+
+	// Set fields
+	for (var ability_stat in ability_bonuses)
 	{
-		bonuses[desc] += bonus[desc];
+		$("#ability_"+ability_stat+"_base").val(ability_bonuses[ability_stat]);
 	}
 
-	var spec = $("#specialization").val();
-	var spec_ability_bonus = DATA_specializations[spec].ability_bonuses;
-	for (var desc in spec_ability_bonus)
+	$("input[id^=adventuring_]").filter("[id$=_base]").val(0); // Reset all to default!
+	for (var adventuring_stat in adventuring_bonuses)
 	{
-		bonuses[desc] += spec_ability_bonus[desc];
+		$("#adventuring_"+adventuring_stat+"_base").val(adventuring_bonuses[adventuring_stat]);
 	}
-
-	for (var stat in bonuses)
-	{
-		console.log("Setting ability "+stat+" to "+bonuses[stat]);
-		$("#ability_"+stat+"_base").val(bonuses[stat]);
-	}
-
 }
 
 
@@ -220,4 +222,36 @@ function loadAll()
 		document.getElementById(key).value = saveData[key];
 	}
 	calculateAll();
+}
+
+/**
+ * Utility stuff
+ */
+
+ /**
+  * Merges two objects and adds existing values
+  *
+  * @param object obj1 - First object
+  * @param object obj2..objn - More objects
+  * @returns object - Resulting object
+  */
+function merge_stats(obj1)
+{
+	var new_obj = obj1;
+	for (var i = 1; i < arguments.length; i++)
+	{
+		for (var key in arguments[i])
+		{
+			value = arguments[i][key];
+			if (new_obj.hasOwnProperty(key) && !isNaN(+(value)))
+			{
+				new_obj[key] += value;
+			}
+			else
+			{
+				new_obj[key] = value;
+			}
+		}
+	}
+	return new_obj;
 }
