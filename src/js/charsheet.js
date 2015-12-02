@@ -72,6 +72,7 @@ function calculateBaseStats()
 {
 	var ability_bonuses = {"strength":2,"instinct":2,"agility":2,"intelligence":2,"willpower":2}; //Default values for Terran
 	var adventuring_bonuses = {}
+	var prowess_bonuses = {}
 
 	var origin = DATA_origins[$("#origin").val()];
 	var chosen_ability_bonus = origin.ability_bonuses[$("#origin_ability_bonus").val()];
@@ -83,6 +84,9 @@ function calculateBaseStats()
 	// Adventuring Skills
 	adventuring_bonuses = merge_stats(adventuring_bonuses,origin.adventuring_bonuses,spec.adventuring_bonuses);
 
+	// Prowess Skills
+	prowess_bonuses = merge_stats(prowess_bonuses,origin.prowess_bonuses,spec.prowess_bonuses);
+
 	// Set fields
 	for (var ability_stat in ability_bonuses)
 	{
@@ -93,6 +97,12 @@ function calculateBaseStats()
 	for (var adventuring_stat in adventuring_bonuses)
 	{
 		$("#adventuring_"+adventuring_stat+"_base").val(adventuring_bonuses[adventuring_stat]);
+	}
+
+	$("input[id^=prowess_]").filter("[id$=_base]").val(0); // Reset all to default!
+	for (var prowess_stat in prowess_bonuses)
+	{
+		$("#prowess_"+prowess_stat+"_base").val(prowess_bonuses[prowess_stat]);
 	}
 }
 
