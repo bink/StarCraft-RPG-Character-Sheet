@@ -125,3 +125,11 @@ label {
 	float: left;
 	margin-bottom: 0.3em;
 }
+
+/**
+ * Specifics
+ */
+
+.info_block {
+	float: right;
+}

@@ -106,6 +106,18 @@ function calculateBaseStats()
 	}
 }
 
+function calculateCharacteristicPoints()
+{
+	var cp_total = 25;
+	var cp_spent = 0;
+
+	cp_spent += DATA_origins[$("#origin").val()].point_cost;
+	cp_spent += DATA_specializations[$("#specialization").val()].point_cost;
+
+	var cp_left = cp_total - cp_spent;
+
+	$("#cp_counter").html(cp_left+"/"+cp_total);
+}
 
 function calculateHealth()
 {
@@ -156,6 +168,8 @@ function calculateAll()
 	calculateHealth();
 	calculateDefense();
 	calculateMovement();
+	calculateCharacteristicPoints();
+
 
 	console.groupEnd();
 }
@@ -169,7 +183,7 @@ function setupData()
 		for(var okey in DATA_origins)
 		{
 			if (DATA_origins[okey].race != rkey) continue;
-			var opt = $("<option>").attr("value",okey).html(DATA_origins[okey].name);
+			var opt = $("<option>").attr("value",okey).html(DATA_origins[okey].name +" ("+DATA_origins[okey].point_cost+" CP)");
 			opt.appendTo(raceGroup);
 		}
 
@@ -178,7 +192,7 @@ function setupData()
 
 	for (var skey in DATA_specializations)
 	{
-		var specOpt = $("<option>").attr("value",skey).html(DATA_specializations[skey].name);
+		var specOpt = $("<option>").attr("value",skey).html(DATA_specializations[skey].name +" ("+DATA_specializations[skey].point_cost+" CP)");
 		specOpt.attr("data-race",DATA_specializations[skey].race);
 		specOpt.appendTo($("#specialization")); 
 	}
