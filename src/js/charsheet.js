@@ -284,7 +284,15 @@ function getSaveJson()
 	var saveData = {};
 	for(var i = 0; i < fields.length; i++)
 	{
-		saveData[fields[i].id] = fields[i].value;
+		var el = $(fields[i]);
+		if (el.hasClass("incdec"))
+		{
+			saveData[fields[i].id] = $(fields[i]).attr("data-internalValue");
+		}
+		else
+		{
+			saveData[fields[i].id] = $(fields[i]).val();
+		}
 	}
 	return btoa(JSON.stringify(saveData));
 }
@@ -301,7 +309,15 @@ function loadAll()
 	var saveData = JSON.parse(atob(code));
 	for (var key in saveData)
 	{
-		document.getElementById(key).value = saveData[key];
+		var el = $("#"+key);
+		if (el.hasClass("incdec"))
+		{
+			el.attr("data-internalValue",saveData[key]);
+		}
+		else
+		{
+			el.val(saveData[key]);
+		}
 	}
 	calculateAll();
 }
