@@ -100,11 +100,6 @@ input.number {
 	max-width: 4em;
 }
 
-input.calc {
-	margin-right: 2px;
-	color: green;
-}
-
 /**
  * Lists
  */

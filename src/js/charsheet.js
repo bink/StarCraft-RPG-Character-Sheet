@@ -7,9 +7,15 @@
  * @param {string} id - The id of the stat.
  * @param {number} val - The new value for the stat.
  */
-function setStat(id, val)
+function setStat(id,val)
 {
 	$("#"+id).val(val);
+}
+
+function setBase(id, val)
+{	
+	$("input#"+id).attr("data-baseValue",val);	
+	formatNumberInput(id);
 }
 
 /**
@@ -23,12 +29,12 @@ function setStat(id, val)
 function getStat(id)
 {
 	var statField = $("#"+id);
-	var statBaseField = $("#"+id+"_base");
 
-	var val = +(statField.val());
-	var base = +(statBaseField.val());
+	var val = +(statField.attr("data-internalValue"));
+	var base = +(statField.attr("data-baseValue"));
 
 	var result = val;
+
 	if (!isNaN(base)) result += base;
 
 	if (isNaN(result)) result = 0;
@@ -90,19 +96,22 @@ function calculateBaseStats()
 	// Set fields
 	for (var ability_stat in ability_bonuses)
 	{
-		$("#ability_"+ability_stat+"_base").val(ability_bonuses[ability_stat]);
+		//$("#ability_"+ability_stat+"_base").val(ability_bonuses[ability_stat]);
+		setBase("ability_"+ability_stat,ability_bonuses[ability_stat]);
 	}
 
 	$("input[id^=adventuring_]").filter("[id$=_base]").val(0); // Reset all to default!
 	for (var adventuring_stat in adventuring_bonuses)
 	{
-		$("#adventuring_"+adventuring_stat+"_base").val(adventuring_bonuses[adventuring_stat]);
+		//$("#adventuring_"+adventuring_stat+"_base").val(adventuring_bonuses[adventuring_stat]);
+		setBase("adventuring_"+adventuring_stat,adventuring_bonuses[adventuring_stat]);
 	}
 
 	$("input[id^=prowess_]").filter("[id$=_base]").val(0); // Reset all to default!
 	for (var prowess_stat in prowess_bonuses)
 	{
-		$("#prowess_"+prowess_stat+"_base").val(prowess_bonuses[prowess_stat]);
+		//$("#prowess_"+prowess_stat+"_base").val(prowess_bonuses[prowess_stat]);
+		setBase("prowess_"+prowess_stat,prowess_bonuses[prowess_stat]);
 	}
 }
 
@@ -151,11 +160,18 @@ function calculateMovement()
 function calculateAll()
 {
 	console.groupCollapsed("Validation");
+//	$("input").each(function(){
+//		incdecStatValue(this.id,0); //Trigger formatting once?
+//	});
 
 	calculateBaseStats();
 	calculateHealth();
 	calculateDefense();
 	calculateMovement();
+
+	$("input").each(function(){
+		formatNumberInput(this.id);
+	});
 
 	console.groupEnd();
 }
@@ -184,6 +200,53 @@ function setupData()
 	}
 }
 
+/**
+ * Events
+ */
+
+function incdecStatValue(id,val)
+{
+	var relInput = $("#"+id);
+	var oldValue = parseInt(relInput.attr("data-internalValue"));
+	if (isNaN(oldValue)) oldValue = 0;
+
+	var newValue = oldValue + val;
+	if (newValue < 0)
+	{
+		newValue = 0;
+	}
+	relInput.attr("data-internalValue",newValue);
+
+	relInput.trigger("change");
+
+	formatNumberInput(id);
+}
+
+function incButtonClicked()
+{
+	incdecStatValue($(this).attr("rel"),1);
+}
+
+function decButtonClicked()
+{
+	incdecStatValue($(this).attr("rel"),-1);
+}
+
+function formatNumberInput(id)
+{
+	var el = $("#"+id);
+	if (!el.hasClass("number") || el.hasClass("calc")) return;
+	var internalValue = +(el.attr("data-internalValue"));
+	var baseValue = +(el.attr("data-baseValue"));
+
+	if (isNaN(internalValue)) internalValue = 0;
+	if (isNaN(baseValue)) baseValue = 0;
+	
+	el.val(baseValue+internalValue);
+	
+}
+
+
 function setupEvents()
 {
 	$("input,select").on("change",calculateAll);
@@ -192,14 +255,23 @@ function setupEvents()
 
 	$("#button_save").on("click",saveAll);
 	$("#button_load").on("click",loadAll);
+
+	$(".inc_button, .dec_button").each(function() {
+		$(this).attr("rel",$(this).parent().prev().attr("id")); //Assign relevant ID to rel-Attribute
+	});
+
+	$(".inc_button").on("click",incButtonClicked);
+	$(".dec_button").on("click",decButtonClicked);
+
+	//$("input.number").on("change",formatNumberInput);
 }
 
 
 $(window).on("load",function() {
-		setupData();
-		setupEvents();
-		validateRaceAndSpecs();
-		calculateAll();
+	setupData();
+	setupEvents();
+	validateRaceAndSpecs();
+	calculateAll();
 });
 
 /**

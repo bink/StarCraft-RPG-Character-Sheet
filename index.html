@@ -48,8 +48,7 @@
 					<li>
 						<label>Strength</label>
 						<div class="baseinput">
-							<input class="number" id="ability_strength_base" type="hidden" value="2" readonly />
-							<input class="save number" id="ability_strength" type="text" value="0" />
+							<input class="save number" id="ability_strength" type="text" value="0" readonly />
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
 								<button class="dec_button">-</button>
@@ -59,8 +58,7 @@
 					<li>
 						<label>Instinct</label>
 						<div class="baseinput">
-							<input class="number" id="ability_instinct_base" type="hidden" value="2" readonly />
-							<input class="save number" id="ability_instinct" type="text" value="0" />
+							<input class="save number" id="ability_instinct" type="text" value="0" readonly />
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
 								<button class="dec_button">-</button>
@@ -70,8 +68,7 @@
 					<li>
 						<label>Agility</label>
 						<div class="baseinput">
-							<input class="number" id="ability_agility_base" type="hidden" value="2" readonly />
-							<input class="save number" id="ability_agility" type="text" value="0" />
+							<input class="save number" id="ability_agility" type="text" value="0" readonly />
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
 								<button class="dec_button">-</button>
@@ -81,8 +78,7 @@
 					<li>
 						<label>Intelligence</label>
 						<div class="baseinput">
-							<input class="number" id="ability_intelligence_base" type="hidden" value="2" readonly />
-							<input class="save number" id="ability_intelligence" type="text" value="0" />
+							<input class="save number" id="ability_intelligence" type="text" value="0" readonly />
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
 								<button class="dec_button">-</button>
@@ -92,7 +88,6 @@
 					<li>
 						<label>Willpower</label>
 						<div class="baseinput">
-							<input class="number" id="ability_willpower_base" type="hidden" value="2" readonly />
 							<input class="save number" id="ability_willpower" type="text" value="0" />
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -107,19 +102,19 @@
 				<ul>
 					<li>
 						<label>Defense</label>
-						<input class="number" id="defense_defense" type="number" readonly />
+						<input class="calc number" id="defense_defense" type="number" readonly />
 					</li>
 					<li>
 						<label>Toughness</label>
-						<input class="number" id="defense_toughness" type="number" readonly />
+						<input class="calc number" id="defense_toughness" type="number" readonly />
 					</li>
 					<li>
 						<label>Resolve</label>
-						<input class="number" id="defense_resolve" type="number" readonly />
+						<input class="calc number" id="defense_resolve" type="number" readonly />
 					</li>
 					<li>
 						<label>Morale</label>
-						<input class="save number" id="defense_morale" type="number" value="0" />
+						<input class="calc save number" id="defense_morale" type="number" value="0" />
 					</li>
 				</ul>
 			</div>
@@ -128,15 +123,15 @@
 				<ul>
 					<li>
 						<label>Hit Points</label>
-						<input class="number" id="health_hitpoints" type="number" readonly />
+						<input class="calc number" id="health_hitpoints" type="number" readonly />
 					</li>
 					<li>
 						<label>Damage Threshold</label>
-						<input class="number" id="health_damagethreshold" type="number" readonly />
+						<input class="calc number" id="health_damagethreshold" type="number" readonly />
 					</li>
 					<li>
 						<label>Healing Threshold</label>
-						<input class="number" id="health_healingthreshold" type="number" readonly />
+						<input class="calc number" id="health_healingthreshold" type="number" readonly />
 					</li>
 				</ul>
 			</div>
@@ -145,15 +140,15 @@
 				<ul>
 					<li>
 						<label>Move Speed</label>
-						<input class="number" id="movement_movespeed" type="number" readonly />
+						<input class="calc number" id="movement_movespeed" type="number" readonly />
 					</li>
 					<li>
 						<label>Shift Speed</label>
-						<input class="number" id="movement_shiftspeed" type="number" readonly />
+						<input class="calc number" id="movement_shiftspeed" type="number" readonly />
 					</li>
 					<li>
 						<label>Initiative</label>
-						<input class="number" id="movement_initiative" type="number" readonly />
+						<input class="calc number" id="movement_initiative" type="number" readonly />
 					</li>
 				</ul>
 			</div>
@@ -201,7 +196,6 @@
 					<li>
 						<label>Acrobatics</label>
 						<div class="baseinput">
-							<input class="number" id="adventuring_acrobatics_base" type="hidden" value="0" readonly />
 							<input class="save number" id="adventuring_acrobatics" type="text" value="0" />
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -212,7 +206,6 @@
 					<li>
 						<label>Athletics</label>
 						<div class="baseinput">
-							<input class="number" id="adventuring_athletics_base" type="hidden" value="0" readonly />
 							<input class="save number" id="adventuring_athletics" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -223,7 +216,6 @@
 					<li>
 						<label>Computers</label>
 						<div class="baseinput">
-							<input class="number" id="adventuring_computers_base" type="hidden" value="0" readonly />
 							<input class="save number" id="adventuring_computers" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -234,7 +226,6 @@
 					<li>
 						<label>Endurance</label>
 						<div class="baseinput">
-							<input class="number" id="adventuring_endurance_base" type="hidden" value="0" readonly />
 							<input class="save number" id="adventuring_endurance" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -245,7 +236,6 @@
 					<li>
 						<label>Influence</label>
 						<div class="baseinput">
-							<input class="number" id="adventuring_influence_base" type="hidden" value="0" readonly />
 							<input class="save number" id="adventuring_influence" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -256,7 +246,6 @@
 					<li>
 						<label>Leadership</label>
 						<div class="baseinput">
-							<input class="number" id="adventuring_leadership_base" type="hidden" value="0" readonly />
 							<input class="save number" id="adventuring_leadership" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -267,7 +256,6 @@
 					<li>
 						<label>Lore</label>
 						<div class="baseinput">
-							<input class="number" id="adventuring_lore_base" type="hidden" value="0" readonly />
 							<input class="save number" id="adventuring_lore" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -278,7 +266,6 @@
 					<li>
 						<label>Medicine</label>
 						<div class="baseinput">
-							<input class="number" id="adventuring_medicine_base" type="hidden" value="0" readonly />
 							<input class="save number" id="adventuring_medicine" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -289,7 +276,6 @@
 					<li>
 						<label>Perception</label>
 						<div class="baseinput">
-							<input class="number" id="adventuring_perception_base" type="hidden" value="0" readonly />
 							<input class="save number" id="adventuring_perception" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -300,7 +286,6 @@
 					<li>
 						<label>Pilot</label>
 						<div class="baseinput">
-							<input class="number" id="adventuring_pilot_base" type="hidden" value="0" readonly />
 							<input class="save number" id="adventuring_pilot" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -311,7 +296,6 @@
 					<li>
 						<label>Psionics</label>
 						<div class="baseinput">
-							<input class="number" id="adventuring_psionics_base" type="hidden" value="0" readonly />
 							<input class="save number" id="adventuring_psionics" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -322,7 +306,6 @@
 					<li>
 						<label>Science</label>
 						<div class="baseinput">
-							<input class="number" id="adventuring_science_base" type="hidden" value="0" readonly />
 							<input class="save number" id="adventuring_science" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -333,7 +316,6 @@
 					<li>
 						<label>Stealth</label>
 						<div class="baseinput">
-							<input class="number" id="adventuring_stealth_base" type="hidden" value="0" readonly />
 							<input class="save number" id="adventuring_stealth" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -344,7 +326,6 @@
 					<li>
 						<label>Tactics</label>
 						<div class="baseinput">
-							<input class="number" id="adventuring_tactics_base" type="hidden" value="0" readonly />
 							<input class="save number" id="adventuring_tactics" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -360,7 +341,6 @@
 					<li>
 						<label>Pistols</label>
 						<div class="baseinput">
-							<input class="number" id="prowess_pistols_base" type="hidden" value="0" readonly />
 							<input class="save number" id="prowess_pistols" type="text" value="0" />
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -371,7 +351,6 @@
 					<li>
 						<label>Rifles</label>
 						<div class="baseinput">
-							<input class="number" id="prowess_rifles_base" type="hidden" value="0" readonly />
 							<input class="save number" id="prowess_rifles" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -382,7 +361,6 @@
 					<li>
 						<label>Heavy</label>
 						<div class="baseinput">
-							<input class="number" id="prowess_heavy_base" type="hidden" value="0" readonly />
 							<input class="save number" id="prowess_heavy" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -393,7 +371,6 @@
 					<li>
 						<label>Explosives</label>
 						<div class="baseinput">
-							<input class="number" id="prowess_explosives_base" type="hidden" value="0" readonly />
 							<input class="save number" id="prowess_explosives" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -404,7 +381,6 @@
 					<li>
 						<label>Melee</label>
 						<div class="baseinput">
-							<input class="number" id="prowess_melee_base" type="hidden" value="0" readonly />
 							<input class="save number" id="prowess_melee" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -415,7 +391,6 @@
 					<li>
 						<label>Land Vehicle</label>
 						<div class="baseinput">
-							<input class="number" id="prowess_land_base" type="hidden" value="0" readonly />
 							<input class="save number" id="prowess_land" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -426,7 +401,6 @@
 					<li>
 						<label>Aerial Vehicle</label>
 						<div class="baseinput">
-							<input class="number" id="prowess_aerial_base" type="hidden" value="0" readonly />
 							<input class="save number" id="prowess_aerial" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -437,7 +411,6 @@
 					<li>
 						<label>Walker Vehicle</label>
 						<div class="baseinput">
-							<input class="number" id="prowess_walker_base" type="hidden" value="0" readonly />
 							<input class="save number" id="prowess_walker" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -448,7 +421,6 @@
 					<li>
 						<label>Durability</label>
 						<div class="baseinput">
-							<input class="number" id="prowess_durability_base" type="hidden" value="0" readonly />
 							<input class="save number" id="prowess_durability" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -459,7 +431,6 @@
 					<li>
 						<label>Defense Training</label>
 						<div class="baseinput">
-							<input class="number" id="prowess_defense_base" type="hidden" value="0" readonly />
 							<input class="save number" id="prowess_defense" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
@@ -470,7 +441,6 @@
 					<li>
 						<label>Mental Training</label>
 						<div class="baseinput">
-							<input class="number" id="prowess_mental_base" type="hidden" value="0" readonly />
 							<input class="save number" id="prowess_mental" type="text" value="0" />		
 							<div class="incdec_inputs">
 								<button class="inc_button">+</button>
